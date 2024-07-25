@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import gsap from 'gsap'
 import HeaderHTML from './Components/Header'
 import MyObjs from './Three/Objects'
 import { activateCameraControls, mainCamera } from './Three/Cameras'
@@ -14,7 +15,7 @@ const scene = new THREE.Scene()
 
 // Objects
 // All my Objects
-const {cube, house} = MyObjs(THREE)
+const { cube, house } = MyObjs(THREE)
 
 scene.add(cube, house)
 
@@ -43,7 +44,7 @@ cube.position.x = 4;
 cube.position.y = 1;
 
 // Move Group
-house.position.set(4,0,0)
+house.position.set(4, 0, 0)
 
 // Rotate Obj
 cube.rotation.reorder("XYZ"); //For Order rotation
@@ -68,9 +69,30 @@ renderer.setSize(sizes.width, sizes.height)
 
 renderer.render(scene, camera)
 
-const animate = () => {
-  requestAnimationFrame(animate);
+//Clock, the same of Time
+//const clock = new THREE.Clock()
+
+//Library for animation, had ther own tick
+gsap.to(cube.position, {duration: 1, delay: 1, x:  2})
+gsap.to(cube.position, {duration: 1, delay: 2, x:  4})
+
+//Animations
+const tick = () => {
+  // Clock, same of before in one line
+  // const elapsedTime = clock.getElapsedTime()
+
+  //Update Objects
+  // cube.rotation.y = Math.sin(elapsedTime) 
+  // cube.rotation.x = Math.cos(elapsedTime) 
+  // camera.lookAt(cube.position)
+
+  // Render
   renderer.render(scene, camera);
+
+  window.requestAnimationFrame(tick);
 };
 
-animate();
+tick()
+
+
+//WARNING, DONT USE getDelta === problems.
