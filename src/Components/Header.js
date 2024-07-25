@@ -17,14 +17,14 @@ const HeaderHTML = () => {
          </div>
          <div id="controls_labels">
             <ul>
-              <li>W:Move Up</li>
-              <li>S:Move Down</li>
-              <li>R:Move Right</li>
-              <li>L:Move Left</li>
+              <li>W: Move Up</li>
+              <li>S: Move Down</li>
+              <li>R: Move Right</li>
+              <li>L: Move Left</li>
             </ul>
              <ul>
-              <li>Q:Zoom In</li>
-              <li>E:Zoom Out</li>
+              <li>Q: Zoom In</li>
+              <li>E: Zoom Out</li>
             </ul>
          </div>
        </div>

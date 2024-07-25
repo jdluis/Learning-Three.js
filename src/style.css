@@ -61,7 +61,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Canvas */
+.canvas_container {
+  margin-bottom: 20px;
 
+}
 /* CAMERA CONTROLS */
 
 #camera_controls {
@@ -74,4 +78,8 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+#controls_labels ul li {
+  text-align: left;
 }

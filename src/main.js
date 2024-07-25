@@ -4,6 +4,25 @@ import gsap from 'gsap'
 import HeaderHTML from './Components/Header'
 import MyObjs from './Three/Objects'
 import { activateCameraControls, mainCamera } from './Three/Cameras'
+
+
+// Orbit Controller
+
+
+// Coursor
+
+const cursor = {
+  x: 0,
+  y: 0
+}
+
+window.addEventListener('mousemove', (e) => {
+
+  //set client x and y to 0/1 values and - y + 
+  cursor.x = e.clientX / sizes.width - 0.5
+  cursor.y = - (e.clientY / sizes.height - 0.5)
+})
+
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -22,7 +41,7 @@ scene.add(cube, house)
 // Sizes
 const sizes = {
   width: 800,
-  height: 800
+  height: 600
 }
 
 //Axes helper
@@ -31,17 +50,14 @@ scene.add(axesHelper);
 
 // Camera
 const camera = mainCamera(THREE, sizes)
-camera.position.x = 5
-camera.position.z = 5
-camera.position.y = 2
 scene.add(camera)
 
 // Scale Obj
 cube.scale.set(1, 0.5, 0.5)
 
 // Move Obj
-cube.position.x = 4;
-cube.position.y = 1;
+//cube.position.x = 4;
+//cube.position.y = 1;
 
 // Move Group
 house.position.set(4, 0, 0)
@@ -70,20 +86,25 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
 
 //Clock, the same of Time
-//const clock = new THREE.Clock()
+const clock = new THREE.Clock()
 
 //Library for animation, had ther own tick
-gsap.to(cube.position, {duration: 1, delay: 1, x:  2})
-gsap.to(cube.position, {duration: 1, delay: 2, x:  4})
+//gsap.to(cube.position, {duration: 1, delay: 1, x:  2})
+//gsap.to(cube.position, {duration: 1, delay: 2, x:  4})
 
 //Animations
 const tick = () => {
   // Clock, same of before in one line
-  // const elapsedTime = clock.getElapsedTime()
+   const elapsedTime = clock.getElapsedTime()
 
   //Update Objects
   // cube.rotation.y = Math.sin(elapsedTime) 
   // cube.rotation.x = Math.cos(elapsedTime) 
+  // camera.lookAt(cube.position)
+
+  // camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
+  // camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
+  // camera.position.y = cursor.y * Math.PI * 2
   // camera.lookAt(cube.position)
 
   // Render
