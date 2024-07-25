@@ -60,3 +60,18 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+
+/* CAMERA CONTROLS */
+
+#camera_controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#controls_labels {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
