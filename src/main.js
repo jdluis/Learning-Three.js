@@ -1,13 +1,10 @@
 import './style.css'
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/Addons.js'
 import gsap from 'gsap'
 import HeaderHTML from './Components/Header'
 import MyObjs from './Three/Objects'
-import { activateCameraControls, mainCamera } from './Three/Cameras'
-
-
-// Orbit Controller
-
+import { mainCamera } from './Three/Cameras'
 
 // Coursor
 
@@ -50,6 +47,7 @@ scene.add(axesHelper);
 
 // Camera
 const camera = mainCamera(THREE, sizes)
+camera.position.z = 3
 scene.add(camera)
 
 // Scale Obj
@@ -71,11 +69,11 @@ cube.rotation.z = Math.PI * .25;
 // Quaternion (update the rotation)
 
 // Turn an Object to look to another obj/vector
-camera.lookAt(house.position)
+//camera.lookAt(house.position)
 
-//Camera controls
-activateCameraControls(camera)
-
+// Orbit Controller
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
 
 // Render
 const renderer = new THREE.WebGLRenderer({
@@ -107,6 +105,9 @@ const tick = () => {
   // camera.position.y = cursor.y * Math.PI * 2
   // camera.lookAt(cube.position)
 
+  // Update controls
+  controls.update()
+  
   // Render
   renderer.render(scene, camera);
 

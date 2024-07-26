@@ -1,6 +1,4 @@
 
-
-
 // first camera
 const mainCamera = (THREE, sizes) => {
     // PerspectiveCamera
@@ -25,38 +23,4 @@ const mainCamera = (THREE, sizes) => {
     return camera
 }
 
-const activateCameraControls = (camera) => {
-    const moveSpeed = 0.1;
-    const zoomSpeed = 0.1;
-
-    window.addEventListener("keydown", (e) => {
-        switch (e.key) {
-            case "w":
-            case "W":
-                camera.position.y += moveSpeed;
-                break;
-            case "s":
-            case "S":
-                camera.position.y -= moveSpeed;
-                break;
-            case "a":
-            case "A":
-                camera.position.x -= moveSpeed;
-                break;
-            case "d":
-            case "D":
-                camera.position.x += moveSpeed;
-                break;
-            case "q":
-            case "Q":
-                camera.position.z -= zoomSpeed;
-                break;
-            case "e":
-            case "E":
-                camera.position.z += zoomSpeed;
-                break;
-        }
-    });
-};
-
-export { mainCamera, activateCameraControls };
+export { mainCamera };
