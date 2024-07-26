@@ -36,12 +36,49 @@ const { cube, house } = MyObjs(THREE)
 scene.add(cube, house)
 
 // Sizes
-const sizes = {
+let sizes = {
   // width: 800,
   // height: 600
   width: window.innerWidth,
   height: window.innerHeight
 }
+
+// FullScreen and Resize //
+// Listeng the resize of the window for new sizes.
+window.addEventListener("resize", () => {
+  // Updates Sizes
+  sizes.width = window.innerWidth;
+  sizes.height = window.innerHeight;
+
+  //Update Camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix()
+
+  renderer.setSize(sizes.width, sizes.height)
+  // Pixel Ratio: Update when resize
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+
+// FullScreen, on doble click or other
+window.addEventListener("dblclick", () => {
+  // For Safari and any browsers
+  const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement
+
+  if (!fullscreenElement) {
+    if (canvas.requestFullscreen) {
+      canvas.requestFullscreen()
+    } else if (canvas.webkitRequestFullscreen) {
+      canvas.webkitRequestFullscreen()
+    }
+  } else {
+    if (document.exitFullscreen) {
+      document.exitFullscreen()
+    } else if (documentwebkitExitFullscreen) {
+      document.documentwebkitExitFullscreen()
+    }
+
+  }
+})
 
 //Axes helper
 const axesHelper = new THREE.AxesHelper()
@@ -81,8 +118,10 @@ controls.enableDamping = true
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas
 })
-renderer.setSize(sizes.width, sizes.height)
 
+renderer.setSize(sizes.width, sizes.height)
+// Pixel Ratio of 2 is more than enough for our eyes.
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.render(scene, camera)
 
 //Clock, the same of Time
@@ -95,7 +134,7 @@ const clock = new THREE.Clock()
 //Animations
 const tick = () => {
   // Clock, same of before in one line
-   const elapsedTime = clock.getElapsedTime()
+  const elapsedTime = clock.getElapsedTime()
 
   //Update Objects
   // cube.rotation.y = Math.sin(elapsedTime) 
@@ -109,7 +148,7 @@ const tick = () => {
 
   // Update controls
   controls.update()
-  
+
   // Render
   renderer.render(scene, camera);
 
