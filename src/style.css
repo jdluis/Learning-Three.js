@@ -17,6 +17,9 @@
   padding: 0;
   margin: 0;
   font-size: 16px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 a {
@@ -29,7 +32,6 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
@@ -42,9 +44,8 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0 2rem 0;
   text-align: center;
 }
 
@@ -77,6 +78,11 @@ button:focus-visible {
 
 /* Canvas */
 .canvas_container {
-  margin-bottom: 20px;
   outline: none;
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 5px;
 }
