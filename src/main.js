@@ -31,9 +31,9 @@ const scene = new THREE.Scene()
 
 // Objects
 // All my Objects
-const { cube, house } = MyObjs(THREE)
+const { cube, house, customObj1 } = MyObjs(THREE)
 
-scene.add(cube, house)
+scene.add(cube, house, customObj1)
 
 // Sizes
 let sizes = {
@@ -82,7 +82,7 @@ window.addEventListener("dblclick", () => {
 
 //Axes helper
 const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper);
+//scene.add(axesHelper);
 
 // Camera
 const camera = mainCamera(THREE, sizes)
@@ -93,9 +93,7 @@ scene.add(camera)
 cube.scale.set(1, 0.5, 0.5)
 
 // Move Obj
-//cube.position.x = 4;
-//cube.position.y = 1;
-
+cube.position.set(4, 1, 0)
 // Move Group
 house.position.set(4, 0, 0)
 
