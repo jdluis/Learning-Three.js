@@ -3,8 +3,15 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/Addons.js'
 import gsap from 'gsap'
 import HeaderHTML from './Components/Header'
-import MyObjs from './Three/Objects'
 import { mainCamera } from './Three/Cameras'
+import MyObjs from './Three/Objects'
+import GUI from 'lil-gui'
+import cubeObj from './Three/Objects/cube'
+
+/*
+* Debug
+*/
+const gui = new GUI();
 
 // Coursor
 
@@ -32,7 +39,6 @@ const scene = new THREE.Scene()
 // Objects
 // All my Objects
 const { cube, house, customObj1 } = MyObjs(THREE)
-
 scene.add(cube, house, customObj1)
 
 // Sizes
@@ -125,6 +131,15 @@ renderer.render(scene, camera)
 //Clock, the same of Time
 const clock = new THREE.Clock()
 
+// Debug
+gui
+  .add(cubeObj.position, 'y')
+  .min(-3)
+  .max(3)
+  .step(0.01)
+  .name("elevation")
+
+
 //Library for animation, had ther own tick
 //gsap.to(cube.position, {duration: 1, delay: 1, x:  2})
 //gsap.to(cube.position, {duration: 1, delay: 2, x:  4})
@@ -133,16 +148,6 @@ const clock = new THREE.Clock()
 const tick = () => {
   // Clock, same of before in one line
   const elapsedTime = clock.getElapsedTime()
-
-  //Update Objects
-  // cube.rotation.y = Math.sin(elapsedTime) 
-  // cube.rotation.x = Math.cos(elapsedTime) 
-  // camera.lookAt(cube.position)
-
-  // camera.position.x = Math.sin(cursor.x * Math.PI * 2) * 3
-  // camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 3
-  // camera.position.y = cursor.y * Math.PI * 2
-  // camera.lookAt(cube.position)
 
   // Update controls
   controls.update()
